@@ -10,7 +10,7 @@ class PacientesController extends Controller
 {
     public function index()
     {
-        return DB::select("SELECT p.id,p.nombre,p.ap_paterno,p.ap_materno,p.sexo,m.nombre as madre,m.telefono1,m.telefono2 FROM madres as m, pacientes as p WHERE p.id_madres=m.id");
+        return DB::select("SELECT p.id,p.nombre,p.ap_paterno,p.ap_materno,p.sexo,m.nombre as madre,m.telefono1,m.telefono2,r.resultado FROM madres as m, pacientes as p, resultados as r, cartillas as c WHERE p.id_madres=m.id and p.id=c.id_pacientes and c.id=r.id_cartillas");
     }
     public function show($id)
 {
